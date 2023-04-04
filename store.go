@@ -13,7 +13,7 @@ type DataStoreVersioned interface {
 
 type DataStoreVersionedRange interface {
 	DataStoreVersioned
-	Range(key string, start int64, end int64) (DataEntryVersionedLinked, error)
+	Range(key string, start int64, end int64) (map[int64]any, error)
 }
 
 type DataStoreVersionedRangeFrom interface {
@@ -23,6 +23,14 @@ type DataStoreVersionedRangeFrom interface {
 
 type DataStoreVersionedRangeFromInterval interface {
 	DataStoreVersionedRangeFrom
-	RangeInterval(key string, start int64, end int64, interval int64) (DataEntryVersionedLinked, error)
-	FromInterval(key string, start int64, interval int64) (DataEntryVersionedLinked, error)
+	RangeInterval(key string, start int64, end int64, interval int64) (map[int64]any, error)
+	FromInterval(key string, start int64, interval int64) (map[int64]any, error)
+}
+
+type DataStoreVersionedRangeFromIntervalArray interface {
+	DataStoreVersionedRangeFrom
+	RangeArray(key string, start int64, end int64) ([]any, error)
+	FromArray(key string, start int64) ([]any, error)
+	RangeIntervalArray(key string, start int64, end int64, interval int64) ([]any, error)
+	FromIntervalArray(key string, start int64, interval int64) ([]any, error)
 }
