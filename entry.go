@@ -1,12 +1,12 @@
 package godatainterface
 
 type DataEntry interface {
-	Data() any
+	Value() any
 }
 
 type DataEntryVersioned interface {
 	DataEntry
-	Timestamp() int64
+	Key() int64
 }
 
 type DataEntryVersionedLinked interface {
