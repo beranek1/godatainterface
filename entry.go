@@ -1,21 +1,21 @@
 package godatainterface
 
 type DataEntry interface {
-	Value() any
+	Get() any
 }
 
 type DataEntryVersioned interface {
 	DataEntry
-	Key() int64
+	GetTimestamp() int64
 }
 
 type DataEntryVersionedLinked interface {
 	DataEntryVersioned
 	GetAt(timestamp int64) any
-	Array() []DataEntry
-	Map() map[int64]any
+	Array() DataEntryVersionedLinkedArray
+	Map() DataEntryVersionedLinkedMap
 }
 
-type DataEntryVersionedLinkedArray []DataEntry
+type DataEntryVersionedLinkedArray []any
 
 type DataEntryVersionedLinkedMap map[int64]any
